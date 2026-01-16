@@ -6,7 +6,7 @@ class LeadApiService {
   private baseUrl: string;
 
   constructor(baseUrl: string = API_BASE_URL) {
-    this.baseUrl = baseUrl;
+    this.baseUrl = `${baseUrl}/api/leads`;
   }
 
   private async request<T>(
