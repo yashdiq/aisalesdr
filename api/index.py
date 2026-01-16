@@ -6,6 +6,9 @@ from app.api.routes import router
 from app.config import settings
 from app.database import Base, engine
 
+# Import all models to ensure they're registered with SQLAlchemy
+from app.models import Lead  # noqa: F401
+
 # Create database tables on startup (works for in-memory database)
 Base.metadata.create_all(bind=engine)
 

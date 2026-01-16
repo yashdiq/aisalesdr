@@ -4,9 +4,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# Import models to ensure they're registered with SQLAlchemy
-from app.models import Lead  # noqa: F401
-
 # Use environment variable for database URL, fallback to SQLite for local development
 # For Vercel serverless, use in-memory SQLite if no DATABASE_URL is provided
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
