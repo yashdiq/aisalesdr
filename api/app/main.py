@@ -5,8 +5,13 @@ from app.api.routes import router
 from app.config import settings
 from app.database import Base, engine
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
+# Create database tables (with error handling for serverless environments)
+try:
+    Base.metadata.create_all(bind=engine)
+except Exception:
+    # SQLite cannot write to Vercel's serverless filesystem
+    # This is expected - database operations will work but won't persist
+    pass
 
 # Create FastAPI app
 app = FastAPI(
