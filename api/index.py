@@ -6,11 +6,8 @@ from app.api.routes import router
 from app.config import settings
 from app.database import Base, engine
 
-# Try to create database tables (will fail silently in serverless environments)
-try:
-    Base.metadata.create_all(bind=engine)
-except Exception:
-    pass
+# Create database tables on startup (works for in-memory database)
+Base.metadata.create_all(bind=engine)
 
 # Create FastAPI app
 app = FastAPI(
